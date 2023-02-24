@@ -6,9 +6,10 @@
         "module": "esnext",
         "allowJs": true,
         "target": "es5",
-        "jsx": "react"
+        "jsx": "react",
+        "allowSyntheticDefaultImports": true,
     },
     "include": [
-        "./src/**/*"
+        "src/**/*"
     ]
 }
