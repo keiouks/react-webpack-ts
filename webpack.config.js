@@ -5,6 +5,7 @@ module.exports = {
   entry: {
     index: "./src/index/index.tsx",
     fullscreen: "./src/fullscreen/index.tsx",
+    animateTest: "./src/animateTest/index.tsx",
   },
   output: {
     filename: '[name].bundle.js',
@@ -51,6 +52,12 @@ module.exports = {
       inject: 'body',
       template: path.join(__dirname, "public", "fullscreen.html"),
       chunks: ['fullscreen'],
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'animate.html',
+      inject: 'body',
+      template: path.join(__dirname, "public", "animate.html"),
+      chunks: ['animateTest'],
     }),
   ],
   devServer: {
