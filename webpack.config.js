@@ -6,6 +6,7 @@ module.exports = {
     index: "./src/index/index.tsx",
     fullscreen: "./src/fullscreen/index.tsx",
     animateTest: "./src/animateTest/index.tsx",
+    dragcursortext: "./src/dragCursorText/index.tsx",
   },
   output: {
     filename: '[name].bundle.js',
@@ -58,6 +59,12 @@ module.exports = {
       inject: 'body',
       template: path.join(__dirname, "public", "animate.html"),
       chunks: ['animateTest'],
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'dragcursortext.html',
+      inject: 'body',
+      template: path.join(__dirname, "public", "dragcursortext.html"),
+      chunks: ['dragcursortext'],
     }),
   ],
   devServer: {

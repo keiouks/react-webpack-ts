@@ -3,11 +3,11 @@ import './animate.less';
 
 export const AnimateUse = () => {
   const divRef = React.useRef<HTMLDivElement>(null);
-  function handleClick(e: any) {
+  function clickDivMove(e: any) {
     e.preventDefault();
     const keyFrames = [
       {
-        transform: 'roate(90deg)',
+        transform: 'rotate(0deg)',
         offset: 0
       },
       {
@@ -15,26 +15,43 @@ export const AnimateUse = () => {
       }
     ];
     const animateOptions = {
-      duration: 2000,
-      iterations: 2,
+      duration: 5000,
+      iterations: 1,
     };
     divRef.current.animate(keyFrames, animateOptions);
+  }
+  function clickSvgMove(e: any) {
+    const keyFrames = [
+      {
+        transform: 'translateY(0) translateX(0)'
+      },
+      {
+        transform: 'translateY(100px) translateX(100px)'
+      },
+    ];
+
+    const animateOptions = {
+      duration: 1000,
+      iterations: 1,
+    };
+    const svgText = document.getElementById('svgText');
+    const animation = svgText.animate(keyFrames, animateOptions);
+    animation.onfinish = () => {
+      svgText.setAttribute('transform', 'translate(100 100)');
+    };
   }
 
   return <div>
     <h1>do some animate test</h1>
-    <div><button onClick={handleClick}>click</button></div>
-    <div className="move" ref={divRef} >xxx</div>
+    <div><button onClick={clickDivMove}>div move</button></div>
+    <div style={{height: "200px"}}>
+      <div className="move" ref={divRef} >xxx</div>
+    </div>
+    <div><button onClick={clickSvgMove}>svg move</button></div>
     <div>
-      <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1">
-        <g>
-          <g id="svgText" transform="matrix(1 0 0 1 0 0) translate(0 0) translate(96434 84313) matrix(1 0 0 1 0 0) matrix(1 0 0 1 0 0) translate(-96434 -84313) matrix(1 0 0 1 0 0)">
-            <g>
-              <g direction="ltr">
-                <text style='font-family:Arial;font-size:24px;fill:#595959;white-space:pre;'></text>
-              </g>
-            </g>
-          </g>
+      <svg height="200" width="200">
+        <g id="svgText" transform="translate(20 30)">
+          <text x="0" y="15" fill="red">I love SVG!</text>
         </g>
       </svg>
     </div>
